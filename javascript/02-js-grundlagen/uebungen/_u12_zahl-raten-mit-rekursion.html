@@ -36,11 +36,42 @@
       const outputEl = document.querySelector('.output');
       const btnEl = document.querySelector('.btn');
 
-      btnEl.addEventListener('click', (e) => {
+      // Функция для генерации случайного числа от 1 до 10
+      const generateRandomNumber = () => Math.floor(Math.random() * 10) + 1;
+
+      // Начинаем игру, генерируя новое число и предлагая пользователю угадать
+      const startGuess = () => {
+        const secretNumber = generateRandomNumber();
+        let userGuess = null;
+
+        while (userGuess !== secretNumber) {
+          // Запрашиваем у пользователя число
+          userGuess = parseInt(prompt("Угадайте число от 1 до 10:"), 10);
+
+          // Проверяем ввод пользователя
+          if (isNaN(userGuess)) {
+            alert("Пожалуйста, введите действительное число.");
+            continue;
+          }
+
+          if (userGuess > secretNumber) {
+            alert("Слишком много! Попробуйте ещё раз.");
+          } else if (userGuess < secretNumber) {
+            alert("Слишком мало! Попробуйте ещё раз.");
+          } else {
+            alert("Правильно! Вы угадали число.");
+            break;
+          }
+        }
+
+        // Выводим сообщение о завершении игры
+        outputEl.textContent = `Загаданное число было: ${secretNumber}. Спасибо за игру!`;
+      };
+
+      // Добавляем обработчик на кнопку для начала игры
+      btnEl.addEventListener('click', () => {
         startGuess();
       });
-
-      const startGuess = () => {};
     </script>
   </body>
 </html>
