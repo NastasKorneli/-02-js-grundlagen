@@ -23,14 +23,18 @@
     </main>
     <script>
       'use strict';
+/*************  ✨ Codeium Command 🌟  *************/
       const outputEl = document.querySelector('.output');
 
+      const askForFuelLoad = () =>
+        Number(prompt('How much fuel did you consume?')) || askForFuelLoad();
       // Функция, которая запрашивает у пользователя ввод и проверяет его на валидность.
       const askForFuelLoad = () => {
         const fuel = parseFloat(prompt('How much fuel did you consume?'));
         if (isNaN(fuel) || fuel <= 0) {
           alert('Please enter a valid number greater than 0.');
           return askForFuelLoad(); // Рекурсивный вызов функции до получения правильного ввода
+/******  2fa317f6-90d7-47af-a3e4-76976f8e2f68  *******/
         }
         return fuel;
       };
