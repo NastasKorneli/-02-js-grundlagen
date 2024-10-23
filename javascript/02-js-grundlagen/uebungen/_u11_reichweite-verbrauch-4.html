@@ -23,25 +23,50 @@
     </main>
     <script>
       'use strict';
-
       const outputEl = document.querySelector('.output');
 
-      // TODO: Die Funktionen mit Rekursion bei falscher Eingabe erweitern
-      const askForFuelLoad = () => prompt('How much fuel did you consume?');
-      const askForDistance = () => prompt('How many km did you travel?');
-      const askForTankSize = () => prompt('How many liters of gasoline fits in your tank?');
+      // Функция, которая запрашивает у пользователя ввод и проверяет его на валидность.
+      const askForFuelLoad = () => {
+        const fuel = parseFloat(prompt('How much fuel did you consume?'));
+        if (isNaN(fuel) || fuel <= 0) {
+          alert('Please enter a valid number greater than 0.');
+          return askForFuelLoad(); // Рекурсивный вызов функции до получения правильного ввода
+        }
+        return fuel;
+      };
 
+      const askForDistance = () => {
+        const dist = parseFloat(prompt('How many km did you travel?'));
+        if (isNaN(dist) || dist <= 0) {
+          alert('Please enter a valid number greater than 0.');
+          return askForDistance(); // Рекурсивный вызов функции до получения правильного ввода
+        }
+        return dist;
+      };
+
+      const askForTankSize = () => {
+        const tank = parseFloat(prompt('How many liters of gasoline fits in your tank?'));
+        if (isNaN(tank) || tank <= 0) {
+          alert('Please enter a valid number greater than 0.');
+          return askForTankSize(); // Рекурсивный вызов функции до получения правильного ввода
+        }
+        return tank;
+      };
+
+      // Запрашиваем данные у пользователя
       const fuelLoad = askForFuelLoad();
       const distance = askForDistance();
       const tankSize = askForTankSize();
 
+      // Функции для расчёта потребления и расстояния
       const consumption = () => Math.floor((fuelLoad / distance) * 100);
       const fuelRange = () => Math.floor((tankSize * distance) / fuelLoad);
 
-      const message = `Your car has a consumption of ${consumption()} liter per 100 kilometers .\nYou can travel ${fuelRange()} km with a full tank.`;
+      const message = `Your car has a consumption of ${consumption()} liters per 100 kilometers.\nYou can travel ${fuelRange()} km with a full tank.`;
 
       console.log(message);
 
+      // Выводим сообщение на страницу
       outputEl.textContent = message;
     </script>
   </body>
