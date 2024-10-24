@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Übung 25: Der Buchstabendieb</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/lodash.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="container py-5">
+        <div class="alert alert-primary">
+          <h1>Übung 25: Der Buchstabendieb</h1>
+          <p>
+            Bei dem deutschen Kinderlied
+            <a href="https://de.wikipedia.org/wiki/Auf_der_Mauer,_auf_der_Lauer"> Auf der Mauer, auf der Lauer</a>
+            singen Sie in jeder neuen Strophe bei den Wörtern Wanze und tanzen immer einen Buchstaben weniger, bis
+            nichts mehr vom jeweiligen Wort übrig ist.
+          </p>
+          <p>
+            Schreiben Sie eine Funktion, der Sie ein beliebiges Wort übergeben können. Sie soll ein Array zurückliefern,
+            bei dem jedes Element ein Teil des Wortes ist, sodass von Element zu Element immer ein Buchstabe verloren
+            geht. Das letzte Element im Array muss immer ein leerer String sein.
+          </p>
+          <p>Beispiel Javascript:</p>
+          <code>letterThief('dance') // => ['danc', 'dan', 'da', 'd', '']</code>
+        </div>
+      </div>
+    </main>
+    <script>
+      'use strict';
+
+      const letterThief = (str) => {
+        const result = [];
+        for (let i = str.length - 1; i >= 0; i--) {
+          result.push(str.slice(0, i));
+        }
+        result.push(''); // Добавляем пустую строку в конце
+        return result;
+      };
+
+      console.log(letterThief('dance')); // => ['danc', 'dan', 'da', 'd', '']
+
+      // Пример использования: вывод результата на страницу
+      const outputEl = document.createElement('div');
+      outputEl.className = 'alert alert-secondary';
+      outputEl.textContent = `Result: ${JSON.stringify(letterThief('dance'))}`;
+      document.querySelector('.container').appendChild(outputEl);
+    </script>
+  </body>
+</html>

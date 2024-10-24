@@ -28,6 +28,31 @@
       'use strict';
 
       const MAX_NUMBER_LENGTH = 7;
+
+      // 1. Lösung mit `times`
+      const padNumberWithTimes = (num) => {
+        const str = String(num);
+        const zerosToAdd = MAX_NUMBER_LENGTH - str.length;
+        return _.repeat('0', zerosToAdd) + str;
+      };
+
+      console.log(padNumberWithTimes(123)); // Ausgabe: 0000123
+
+      // 2. Lösung mit Rekursion
+      const padNumberRecursive = (num) => {
+        const str = String(num);
+        if (str.length >= MAX_NUMBER_LENGTH) return str;
+        return padNumberRecursive('0' + str);
+      };
+
+      console.log(padNumberRecursive(123)); // Ausgabe: 0000123
+
+      // 3. Lösung ohne `times` und ohne Rekursion
+      const padNumberStandard = (num) => {
+        return String(num).padStart(MAX_NUMBER_LENGTH, '0');
+      };
+
+      console.log(padNumberStandard(123)); // Ausgabe: 0000123
     </script>
   </body>
 </html>

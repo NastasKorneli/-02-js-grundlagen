@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Übung 20: 6 Richtige?</title>
@@ -8,100 +8,104 @@
     <script src="libs/helpers.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
     <style>
-        .lotto-ball {
-            margin: 3px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #ccc;
-            border: 1px solid #ddd;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-            background: #ccc;
-            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(133, 133, 133, 1) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .output2 {
-            display: flex;
-            justify-content: space-between;
-        }
+      .lotto-ball {
+        margin: 3px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ccc;
+        border: 1px solid #ddd;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(133, 133, 133, 1) 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .output2 {
+        display: flex;
+        justify-content: space-between;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <div class="container py-5">
-            <h1>Übung 20: 6 Richtige?</h1>
-            <p>
-                Erweitern Sie Ihren Lottogenerator aus Übung 17. Lassen Sie den Generator sechs zufällige Lottozahlen
-                ausgeben. (Doppelte Zahlen sind zunächst erlaubt.)
-            </p>
-
-            <p>Schreiben Sie einen neuen Lottogenerator, der keine doppelten Zahlen erzeugt.</p>
-            <p>
-                <strong>Hinweis:</strong> Sie können das beispielsweise wie beim echten Lotto lösen, indem Sie erst einmal 49
-                Zahlen in einen Behälter werfen, diesen schütteln und dann daraus die ersten 6 Zahlen ziehen.
-            </p>
-            <div class="output alert alert-secondary">
-                <div class="row">
-                    <div class="col-12 d-flex">
-                        <div class="lotto-ball">
-                            <span class="lotto-number">00</span>
-                        </div>
-                        <div class="lotto-ball">
-                            <span class="lotto-number">00</span>
-                        </div>
-                        <div class="lotto-ball">
-                            <span class="lotto-number">00</span>
-                        </div>
-                        <div class="lotto-ball">
-                            <span class="lotto-number">00</span>
-                        </div>
-                        <div class="lotto-ball">
-                            <span class="lotto-number">00</span>
-                        </div>
-                        <div class="lotto-ball">
-                            <span class="lotto-number">00</span>
-                        </div>
-                    </div>
-                </div>
+      <div class="container py-5">
+        <h1>Übung 20: 6 Richtige?</h1>
+        <p>
+          Erweitern Sie Ihren Lottogenerator aus Übung 17. Lassen Sie den Generator sechs zufällige Lottozahlen
+          ausgeben. (Doppelte Zahlen sind zunächst erlaubt.)
+        </p>
+        <p>Schreiben Sie einen neuen Lottogenerator, der keine doppelten Zahlen erzeugt.</p>
+        <p>
+          <strong>Hinweis:</strong> Sie können das beispielsweise wie beim echten Lotto lösen, indem Sie erst einmal 49
+          Zahlen in einen Behälter werfen, diesen schütteln und dann daraus die ersten 6 Zahlen ziehen.
+        </p>
+        <div class="output alert alert-secondary">
+          <div class="row">
+            <div class="col-12 d-flex">
+              <div class="lotto-ball">
+                <span class="lotto-number">00</span>
+              </div>
+              <div class="lotto-ball">
+                <span class="lotto-number">00</span>
+              </div>
+              <div class="lotto-ball">
+                <span class="lotto-number">00</span>
+              </div>
+              <div class="lotto-ball">
+                <span class="lotto-number">00</span>
+              </div>
+              <div class="lotto-ball">
+                <span class="lotto-number">00</span>
+              </div>
+              <div class="lotto-ball">
+                <span class="lotto-number">00</span>
+              </div>
             </div>
-
-            <div class="output2 alert alert-secondary my-3"></div>
-            <button class="btn btn-dark button-ziehung">Lottoziehung</button>
+          </div>
         </div>
+        <button class="btn btn-dark button-ziehung">Lottoziehung</button>
+      </div>
     </main>
     <script>
-        'use strict';
+      'use strict';
 
-        const buttonEl = document.querySelector('.button-ziehung');
-        const lottoBalls = document.querySelectorAll('.lotto-number');
+      const buttonEl = document.querySelector('.button-ziehung');
+      const outputEls = document.querySelectorAll('.lotto-number');
 
-        // Function to generate 6 unique lotto numbers
-        const getLottoNumbers = () => {
-            // Create an array of numbers from 1 to 49
-            let numbers = Array.from({ length: 49 }, (_, i) => i + 1);
-            // Shuffle the array using lodash shuffle
-            numbers = _.shuffle(numbers);
-            // Return the first 6 numbers from the shuffled array
-            return numbers.slice(0, 6).sort((a, b) => a - b);
-        };
+      // 1. Generieren von 6 zufälligen Zahlen (mit möglichen Duplikaten)
+      const getLottoNumbersWithDuplicates = () => {
+        let numbers = [];
+        for (let i = 0; i < 6; i++) {
+          numbers.push(Math.floor(Math.random() * 49) + 1);
+        }
+        return numbers;
+      };
 
-        // Function to display the generated numbers on the UI
-        const displayLottoNumbers = (numbers) => {
-            numbers.forEach((num, index) => {
-                lottoBalls[index].textContent = num.toString().padStart(2, '0');
-            });
-        };
+      // 2. Generieren von 6 zufälligen Zahlen (ohne Duplikate)
+      const getLottoNumbersNoDuplicates = () => {
+        let numbers = [];
+        let availableNumbers = Array.from({ length: 49 }, (_, i) => i + 1);
+        for (let i = 0; i < 6; i++) {
+          const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+          numbers.push(availableNumbers[randomIndex]);
+          availableNumbers.splice(randomIndex, 1); // Entfernen der gezogenen Zahl
+        }
+        return numbers;
+      };
 
-        // Event handler for button click
-        const onButtonClick = (e) => {
-            const lottoNumbers = getLottoNumbers();
-            displayLottoNumbers(lottoNumbers);
-        };
+      // Eventhandler
+      const onButtonClick = () => {
+        // Wählen Sie eine Methode: entweder mit Duplikaten oder ohne
+        const lottoNumbers = getLottoNumbersNoDuplicates(); // oder getLottoNumbersWithDuplicates()
+        lottoNumbers.forEach((num, index) => {
+          outputEls[index].textContent = String(num).padStart(2, '0');
+        });
+        console.log(lottoNumbers);
+      };
 
-        // Add event listener to button
-        buttonEl.addEventListener('click', onButtonClick);
+      buttonEl.addEventListener('click', onButtonClick);
     </script>
-</body>
+  </body>
 </html>
