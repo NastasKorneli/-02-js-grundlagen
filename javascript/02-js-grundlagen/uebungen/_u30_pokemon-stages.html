@@ -43,13 +43,13 @@
         ['Dratini', 'Dragonair', 'Dragonite'],
       ];
 
-      // Function to get all stages for a given evolution stage
+     
       const getStages = (pokemon = '') => {
         const stages = evolutionStages.find((stageGroup) => stageGroup.includes(pokemon));
         return stages ? stages : 'No evolution stages found';
       };
 
-      // Function to get stages after the given stage
+  
       const getStagesAfter = (pokemon = '') => {
         const stages = getStages(pokemon);
         if (stages === 'No evolution stages found') return [];
@@ -57,7 +57,7 @@
         return index !== -1 && index < stages.length - 1 ? stages.slice(index + 1) : [];
       };
 
-      // Function to get stages before the given stage
+  
       const getStagesBefore = (pokemon = '') => {
         const stages = getStages(pokemon);
         if (stages === 'No evolution stages found') return [];
@@ -65,14 +65,14 @@
         return index > 0 ? stages.slice(0, index) : [];
       };
 
-      console.log('stages:', getStages('Ninetales')); // Output: [ 'Vulpix', 'Ninetales' ]
-      console.log(getStagesAfter('Dratini')); // Output: [ 'Dragonair', 'Dragonite' ]
-      console.log(getStagesAfter('Pidgeotto')); // Output: [ 'Pidgeot']
-      console.log(getStagesAfter('Ninetales')); // Output: []
+      console.log('stages:', getStages('Ninetales')); 
+      console.log(getStagesAfter('Dratini')); 
+      console.log(getStagesAfter('Pidgeotto')); 
+      console.log(getStagesAfter('Ninetales')); 
 
-      console.log(getStagesBefore('Pidgeot')); // Output: [ 'Pidgey', 'Pidgeotto' ]
-      console.log(getStagesBefore('Dragonair')); // Output: [ 'Dratini' ]
-      console.log(getStagesBefore('Ninetales')); // Output: [ 'Vulpix' ]
+      console.log(getStagesBefore('Pidgeot')); 
+      console.log(getStagesBefore('Dragonair')); 
+      console.log(getStagesBefore('Ninetales')); 
     </script>
   </body>
 </html>
