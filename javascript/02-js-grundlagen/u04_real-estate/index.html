@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Real estate agency XYZ</title>
+    <meta name="description" content="Real estate agency XYZ" />
+    <link rel="shortcut icon" href="assets/favicon_real_estate.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/real_estate.css" type="text/css" media="screen" />
+  </head>
+
+  <body>
+    <header>
+      <a id="logo"></a>
+
+      <nav id="main_menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Objects</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="content_area">
+      <div id="content">
+        <h1>Welcome!</h1>
+
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam.
+        </p>
+
+        <p>
+          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+          feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+          delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </p>
+
+        <p>
+          Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+          feugiat nulla facilisis.
+        </p>
+      </div>
+
+      <div id="sidebar">
+        <div class="sidebox">
+          <h2>Contact</h2>
+          <address>
+            <strong>Real estate agency</strong><br />
+            Main Street 123<br />
+            12345 Wherever
+          </address>
+
+          <p>
+            tel +49 (0) 123 - 234 556 765<br />
+            fax +49 (0) 123 - 19 03 375
+          </p>
+
+          <p>
+            <a href="#">info@xyz-agency.example.com</a><br />
+            <a href="#">www.xyz-agency.example.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer><a href="#">Imprint</a> | photo: © LOU_OATES - Fotolia.com</footer>
+
+    <script>
+      'use strict';
+      {
+        // Task 1: Function to change the content of all h1 tags
+        function changeH1Content(newContent) {
+          document.querySelectorAll('h1').forEach(h1 => {
+            h1.textContent = newContent;
+          });
+        }
+
+        // Task 2: Function to change the content of all p tags
+        function changePContent(newContent) {
+          document.querySelectorAll('p').forEach(p => {
+            p.textContent = newContent;
+          });
+        }
+
+        // Task 3: Function to change the navigation items
+        function changeNavContent(newNavItems) {
+          const navLinks = document.querySelectorAll('#main_menu ul li a');
+          navLinks.forEach((link, index) => {
+            if (newNavItems[index]) {
+              link.textContent = newNavItems[index];
+            }
+          });
+        }
+
+        // Optional Task 4: Function to combine the above functions
+        function updateContent(h1Text, pText, navItems) {
+          changeH1Content(h1Text);
+          changePContent(pText);
+          changeNavContent(navItems);
+        }
+
+        // Example usage:
+        // changeH1Content("New Real Estate Agency");
+        // changePContent("This is the updated description content.");
+        // changeNavContent(["Home", "About Us", "Services", "Properties", "Contact Us"]);
+        
+        // Combined function call:
+        // updateContent("Welcome to Our Agency", "Updated paragraph text here.", ["Home", "About", "Listings", "Services", "Contact"]);
+      }
+    </script>
+  </body>
+</html>
