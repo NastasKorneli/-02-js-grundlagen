@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Übung 9: Please Click Me</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container py-5">
+        <h1>Übung 9: Please Click Me</h1>
+        <button class="btn btn-dark button-click my-5"><i class="fa-solid fa-arrow-pointer"></i> Click Me</button>
+      </div>
+    </main>
+    <script>
+      'use strict';
+
+      // Shorter references for query selection
+      const button = document.querySelector('.button-click');
+
+      // Event listener for the button click
+      button.addEventListener('click', (event) => {
+        // Check if the Alt key is held down while clicking
+        if (event.altKey) {
+          // Requirement 3: Change text when Alt key is pressed
+          button.innerHTML = '<i class="fa-solid fa-arrow-pointer"></i> Cool, you found an easteregg';
+        } else {
+          // Requirement 2: Change button text normally
+          button.innerHTML = '<i class="fa-solid fa-arrow-pointer"></i> Hey I like it when you click me!';
+        }
+      });
+    </script>
+  </body>
+</html>

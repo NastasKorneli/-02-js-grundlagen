@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Newsboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/newsboard.css" />
+  </head>
+
+  <body>
+    <div class="m-newsboard newsboard_wrapper">
+      <div class="newsboard">
+        <span class="message_number">1</span>
+        <a href="#" class="close_button" title="Delete message">&times;</a>
+        <div class="newsboard_content">Message will appear here</div>
+
+        <div class="paging_bar">
+          <span class="float_left">
+            <button title="first" class="btn btn-default button-first"><i class="fa-solid fa-angles-left"></i></button>
+            <button title="prev" class="btn btn-default button-prev"><i class="fa-solid fa-chevron-left"></i></button>
+          </span>
+          <span class="float_right">
+            <button title="next" class="btn btn-default button-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <button title="last" class="btn btn-default button-last"><i class="fa-solid fa-angles-right"></i></button>
+          </span>
+          <span class="progressbar">
+            <progress max="3" value="1" id="messages_progress"></progress>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Sample messages array
+      const messages = [
+        "Message 1: Welcome to Newsboard!",
+        "Message 2: Breaking News - Stay tuned.",
+        "Message 3: Updates available, check them out."
+      ];
+
+      let currentMessageIndex = 0; // Track current message
+
+      // DOM Elements
+      const messageContent = document.querySelector(".newsboard_content");
+      const messageNumber = document.querySelector(".message_number");
+      const progressBar = document.getElementById("messages_progress");
+
+      // Navigation Buttons
+      const firstButton = document.querySelector(".button-first");
+      const prevButton = document.querySelector(".button-prev");
+      const nextButton = document.querySelector(".button-next");
+      const lastButton = document.querySelector(".button-last");
+
+      // Initialize Newsboard
+      function initNewsboard() {
+        progressBar.max = messages.length; // Set progress bar max
+        updateMessage(); // Display initial message
+      }
+
+      // Update Displayed Message and Progress
+      function updateMessage() {
+        messageContent.textContent = messages[currentMessageIndex];
+        messageNumber.textContent = currentMessageIndex + 1;
+        progressBar.value = currentMessageIndex + 1;
+      }
+
+      // Navigation Functions
+      function goToFirst() {
+        currentMessageIndex = 0;
+        updateMessage();
+      }
+
+      function goToPrev() {
+        if (currentMessageIndex > 0) {
+          currentMessageIndex--;
+          updateMessage();
+        }
+      }
+
+      function goToNext() {
+        if (currentMessageIndex < messages.length - 1) {
+          currentMessageIndex++;
+          updateMessage();
+        }
+      }
+
+      function goToLast() {
+        currentMessageIndex = messages.length - 1;
+        updateMessage();
+      }
+
+      // Event Listeners
+      firstButton.addEventListener("click", goToFirst);
+      prevButton.addEventListener("click", goToPrev);
+      nextButton.addEventListener("click", goToNext);
+      lastButton.addEventListener("click", goToLast);
+
+      // Initialize on Load
+      document.addEventListener("DOMContentLoaded", initNewsboard);
+    </script>
+  </body>
+</html>
