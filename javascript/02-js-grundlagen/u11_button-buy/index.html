@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Übung 11: Jetzt hat es sich »ausgebuyt«!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container py-5">
+        <h1>Übung 11: Jetzt hat es sich »ausgebuyt«!</h1>
+        <p>
+          Anwender sind häufig ungeduldig und neigen dazu, mehrmals auf etwas zu klicken, wenn nicht sofort etwas
+          Sichtbares passiert. Damit der Käufer die neue Heimkino-Anlage oder das Segelboot nicht versehentlich mehrfach
+          bestellt, hat es sich bewährt, Buttons zu deaktivieren, nachdem sie geklickt wurden.
+        </p>
+        <hr />
+        <p>
+          Optional: setTimeout nutzen um den Button für 3 Sekunden zu deaktivieren.
+          <br />
+          Optional: Sekunden im Button runterzählen
+        </p>
+
+        <button class="btn btn-primary button-buy">
+          <i class="fa-solid fa-cart-shopping"></i>&nbsp;In den Warenkorb
+        </button>
+      </div>
+    </main>
+    <script>
+      'use strict';
+    
+      // Selecting the button
+      const $ = (qs) => document.querySelector(qs);
+      const DOM = {};
+      DOM.button = $('.button-buy');
+    
+      // 1. Disable the button immediately when clicked
+      DOM.button.addEventListener('click', () => {
+        disableButtonWithCountdown();
+      });
+    
+      // 2. Function to disable the button and start a 3-second countdown
+      function disableButtonWithCountdown() {
+        // Disable the button and set an initial label
+        DOM.button.disabled = true;
+        let countdown = 3;
+        DOM.button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i>&nbsp;Bitte warten... (${countdown})`;
+    
+        // 3. Start countdown with setInterval
+        const intervalId = setInterval(() => {
+          countdown -= 1;
+          DOM.button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i>&nbsp;Bitte warten... (${countdown})`;
+    
+          // When countdown reaches 0, re-enable the button
+          if (countdown <= 0) {
+            clearInterval(intervalId);
+            DOM.button.disabled = false;
+            DOM.button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i>&nbsp;In den Warenkorb`;
+          }
+        }, 1000);
+      }
+    </script>
+    
+  </body>
+</html>

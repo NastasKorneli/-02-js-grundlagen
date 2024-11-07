@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Newsboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/newsboard.css" />
+  </head>
+
+  <body>
+    <div class="m-newsboard newsboard_wrapper">
+      <div class="newsboard">
+        <span class="message_number"></span>
+        <a href="#" class="close_button" title="Delete message">&times;</a>
+        <div class="newsboard_content"></div>
+
+        <div class="paging_bar">
+          <span class="float_left">
+            <button title="first" class="btn btn-default button-first">
+              <i class="fa-solid fa-angles-left"></i>
+            </button>
+            <button title="prev" class="btn btn-default button-prev">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+          </span>
+
+          <span class="float_right">
+            <button title="next" class="btn btn-default button-next">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button title="last" class="btn btn-default button-last">
+              <i class="fa-solid fa-angles-right"></i>
+            </button>
+          </span>
+
+          <span class="progressbar">
+            <progress max="100" value="1" id="messages_progress"></progress>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const messages = [
+          "Welcome to the Newsboard!",
+          "This is the second message.",
+          "Don't miss the latest updates.",
+          "Here is the fourth message.",
+          "Last message in this demo."
+        ];
+
+        let currentIndex = 0;
+        const totalMessages = messages.length;
+
+        // DOM Elements
+        const messageNumber = document.querySelector(".message_number");
+        const newsboardContent = document.querySelector(".newsboard_content");
+        const progressBar = document.getElementById("messages_progress");
+        const buttonFirst = document.querySelector(".button-first");
+        const buttonPrev = document.querySelector(".button-prev");
+        const buttonNext = document.querySelector(".button-next");
+        const buttonLast = document.querySelector(".button-last");
+
+        // Function to update the newsboard content and progress
+        function updateNewsboard() {
+          newsboardContent.textContent = messages[currentIndex];
+          messageNumber.textContent = `Message ${currentIndex + 1} of ${totalMessages}`;
+          progressBar.value = ((currentIndex + 1) / totalMessages) * 100;
+        }
+
+        // Navigation functions
+        function goToFirst() {
+          currentIndex = 0;
+          updateNewsboard();
+        }
+
+        function goToPrev() {
+          if (currentIndex > 0) {
+            currentIndex -= 1;
+            updateNewsboard();
+          }
+        }
+
+        function goToNext() {
+          if (currentIndex < totalMessages - 1) {
+            currentIndex += 1;
+            updateNewsboard();
+          }
+        }
+
+        function goToLast() {
+          currentIndex = totalMessages - 1;
+          updateNewsboard();
+        }
+
+        // Event listeners for buttons
+        buttonFirst.addEventListener("click", goToFirst);
+        buttonPrev.addEventListener("click", goToPrev);
+        buttonNext.addEventListener("click", goToNext);
+        buttonLast.addEventListener("click", goToLast);
+
+        // Initialize the Newsboard display
+        updateNewsboard();
+      });
+    </script>
+  </body>
+</html>
+
