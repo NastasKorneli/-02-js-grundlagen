@@ -1,20 +1,24 @@
-'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.tabs nav ul li');
+  const articles = document.querySelectorAll('.tabs article');
 
-(() => {
-  // === DOM & VARS =======
-  const DOM = {};
+  // Function to activate a specific tab and article
+  const activateTab = (index) => {
+    tabs.forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+      articles[i].classList.toggle('active', i === index);
+    });
+  };
 
-  // === INIT =============
-  const init = () => {};
+  // Initial activation of the first tab
+  activateTab(0);
 
-  // === EVENTHANDLER =====
+  // Event listener for each tab
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(index));
+  });
+});
 
-  // === XHR/FETCH ========
-
-  // === FUNCTIONS ========
-
-  init();
-})();
 
 // Übung 15: TABula Rasa
 // Einer Ihrer Kunden ist ein Schulungsunternehmen. Der Akademieleiter wünscht sich, dass die Beschreibungsseiten der Seminare etwas übersichtlicher dargestellt werden. Daher sollen die Seminarübersichtsseiten in Zukunft über Reiter (Tabs) verfügen, sodass Besucher zwischen den Bereichen

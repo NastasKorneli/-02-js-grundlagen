@@ -53,3 +53,23 @@
 .tabs .articles {
   padding: 3rem 0;
 }
+.tabs nav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.tabs nav ul li.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+.tabs article {
+  display: none;
+}
+
+.tabs article.active {
+  display: block;
+}
