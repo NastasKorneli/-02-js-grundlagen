@@ -24,11 +24,24 @@
       </div>
     </main>
     <script>
+     
       'use strict';
-      (() => {
-        const $ = (qs) => document.querySelector(qs);
-        const $$ = (qs) => Array.from(document.querySelectorAll(qs));
-      })();
+(() => {
+  const $ = (qs) => document.querySelector(qs);
+  const $$ = (qs) => Array.from(document.querySelectorAll(qs));
+
+  // Select all buttons with data-color attribute
+  const colorButtons = $$('button[data-color]');
+
+  // Add event listener to each button to change background color
+  colorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const color = button.getAttribute('data-color');
+      document.body.style.backgroundColor = color;
+    });
+  });
+})();
+
     </script>
   </body>
 </html>
