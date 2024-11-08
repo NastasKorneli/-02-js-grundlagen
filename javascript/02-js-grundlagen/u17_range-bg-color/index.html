@@ -64,21 +64,39 @@
     <script>
       'use strict';
 
-      (() => {
-        // === DOM & VARS =======
-        const DOM = {};
+(() => {
+  // === DOM & VARS =======
+  const DOM = {
+    redInput: document.getElementById('input-red'),
+    greenInput: document.getElementById('input-green'),
+    blueInput: document.getElementById('input-blue'),
+  };
 
-        // === INIT =============
-        const init = () => {};
+  // === INIT =============
+  const init = () => {
+    // Add event listeners to each slider
+    DOM.redInput.addEventListener('input', updateBackgroundColor);
+    DOM.greenInput.addEventListener('input', updateBackgroundColor);
+    DOM.blueInput.addEventListener('input', updateBackgroundColor);
 
-        // === EVENTHANDLER =====
+    // Initialize background color based on initial slider values
+    updateBackgroundColor();
+  };
 
-        // === XHR/FETCH ========
+  // === FUNCTIONS ========
+  const updateBackgroundColor = () => {
+    // Get current values from each slider
+    const red = DOM.redInput.value;
+    const green = DOM.greenInput.value;
+    const blue = DOM.blueInput.value;
 
-        // === FUNCTIONS ========
+    // Set the body's background color based on RGB values
+    document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+  };
 
-        init();
-      })();
+  init();
+})();
+
     </script>
   </body>
 </html>
